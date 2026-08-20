@@ -109,13 +109,21 @@ async function main() {
       } else {
         clearInterval(countdownInterval);
         // THAY LINK BẠN MUỐN CHUYỂN HƯỚNG VÀO ĐÂY
-        window.location.href = "";
+        const urlParams = new URLSearchParams(window.location.search);
+        const userId = urlParams.get('userId');
+        if (userId) {
+          window.location.href = `https://incog-six.vercel.app/api/verify-callback?userId=${userId}`;
+        }
       }
     }, 1000);
   } else {
     // Nếu không tìm thấy nút, vẫn tự động chuyển hướng sau 3 giây
     setTimeout(() => {
-      window.location.href = "";
+      const urlParams = new URLSearchParams(window.location.search);
+      const userId = urlParams.get('userId');
+      if (userId) {
+        window.location.href = `https://incog-six.vercel.app/api/verify-callback?userId=${userId}`;
+      }
     }, 3000);
   }
 }
